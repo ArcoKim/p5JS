@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<title>네모 네모</title>
+		<script src="https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/p5.min.js"></script>
+	</head>
+	<body style="margin:0;">
+		<script>
+			let modeBtn, resetBtn;
+			let bool = false;
+
+			function setup() {
+				createCanvas(windowWidth, windowHeight);
+				background(0);
+				modeBtn = createButton('모드 변경');
+  			modeBtn.position(20, 20);
+				modeBtn.mousePressed(function modeChange() {
+					if(bool) {
+						bool = false;
+					} else {
+						bool = true;
+					}
+				});
+				resetBtn = createButton('리셋');
+				resetBtn.position(120, 20);
+				resetBtn.mousePressed(function reset() {background(0);});
+			}
+
+			function draw() {
+				if(mouseIsPressed === bool) {
+					px = pow(mouseX - pmouseX, 2);
+					py = pow(mouseY - pmouseY, 2);
+					speed = sqrt(px + py);
+					noStroke();
+					fill(random(255), random(255), random(255), 100);
+					rect(mouseX, mouseY, speed);
+				}
+			}
+		</script>
+	</body>
+</html>
